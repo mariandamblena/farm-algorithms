@@ -91,5 +91,7 @@ public class ConjuntoString implements ConjuntoStringTDA {
 	@Override
 	public boolean estaVacio() {
 		return cantidad == 0;
+
+
 	}
 }

@@ -200,31 +200,31 @@ public class Algoritmos {
 	public ColaStringTDA camposConLLuviaMayorPromedio(int anio, int mes) {
 		String periodo = armarPeriodo(anio, mes);
 
-		// 1) Primera pasada: suma y cuenta de campos
+		// primera pasada: suma y cuenta de campos
 		int[] stats = new int[2]; // stats[0]=sumaTotal, stats[1]=cantidadCampos
 		acumularSumaYConteo(arbol, periodo, stats);
 		float promedio = stats[1] == 0 ? 0f : (float) stats[0] / stats[1];
 
-		// 2) Segunda pasada: recolectar sólo los que superan el promedio
+		// segunda pasada: recolectar solo los que superan el promedio
 		ColaStringTDA resultado = new ColaString();
 		resultado.inicializarCola();
 		recolectarCamposMayor(arbol, periodo, promedio, resultado);
 
 		return resultado;
 	}
-	// Recorre el ABB e incrementa stats[0] y stats[1].
+	// recorre el ABB e incrementa stats[0] y stats[1].
 	private void acumularSumaYConteo(ABBPrecipitacionesTDA nodo, String periodo, int[] stats) {
 		if (nodo == null || nodo.arbolVacio()) return;
-		// Total de lluvia para este campo en 'periodo'
+		//total de lluvia para este campo en 'periodo'
 		int totalCampo = calcularTotalCampo(nodo, periodo);
 		stats[0] += totalCampo;
 		stats[1] += 1;
-		// Recursión izquierda y derecha
+		// recursion izquierda y derecha
 		acumularSumaYConteo(nodo.hijoIzq(), periodo, stats);
 		acumularSumaYConteo(nodo.hijoDer(), periodo, stats);
 	}
 
-	// Llena la cola con los campos cuya lluvia > promedio.
+	// llena la cola con los campos con lluvia > promedio.
 	private void recolectarCamposMayor(ABBPrecipitacionesTDA nodo, String periodo,
 									   float promedio, ColaStringTDA res) {
 		if (nodo == null || nodo.arbolVacio()) return;
@@ -235,11 +235,11 @@ public class Algoritmos {
 		recolectarCamposMayor(nodo.hijoIzq(), periodo, promedio, res);
 		recolectarCamposMayor(nodo.hijoDer(), periodo, promedio, res);
 	}
-	// Suma todos los valores de lluvia en la cola de prioridades para 'periodo'.
+	// Suma todos los valores de lluvia en la cola de prioridades para periodo.
 	private int calcularTotalCampo(ABBPrecipitacionesTDA nodo, String periodo) {
 		ColaPrioridadTDA lluvias = nodo.precipitaciones(periodo);
 		int suma = 0;
-		// NO volvemos a inicializar la cola: leemos directo
+		// no inicio devulta la cola: leemos directo
 		while (!lluvias.colaVacia()) {
 			suma += lluvias.prioridad();
 			lluvias.desacolar();

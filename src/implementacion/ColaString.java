@@ -45,10 +45,12 @@ public class ColaString implements ColaStringTDA {
 	@Override
 	public String primero() {
 		return primero.valor;
+
 	}
 
 	@Override
 	public boolean colaVacia() {
 		return primero == null;
+
 	}
 }

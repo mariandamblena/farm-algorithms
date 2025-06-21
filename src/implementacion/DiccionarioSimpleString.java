@@ -49,8 +49,10 @@ public class DiccionarioSimpleString implements DiccionarioSimpleStringTDA {
 			return;
 		}
 
+
 		nodo anterior = primero;
 		nodo actual = primero.siguiente;
+
 
 		while (actual != null) {
 			if (actual.periodo.equals(periodo)) {

@@ -52,12 +52,14 @@ public class ColaPrioridad implements ColaPrioridadTDA {
 	@Override
 	public int primero() {
 		return primero.valor;
+
 	}
 
 
 	@Override
 	public int prioridad() {
 		return primero.prioridad;
+
 	}
 
 

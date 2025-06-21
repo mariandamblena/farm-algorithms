@@ -26,6 +26,7 @@ public class DiccionarioSimple implements tdas.DiccionarioSimpleTDA {
 		if (primero == null)
 			primero = nuevo;
 
+
 		else {
 			nodo actual = primero;
 			while (actual.siguiente != null) {
@@ -46,6 +47,7 @@ public class DiccionarioSimple implements tdas.DiccionarioSimpleTDA {
 
 		nodo anterior = primero;
 		nodo actual = primero.siguiente;
+
 
 		while (actual != null){
 			if (actual.clave == clave){

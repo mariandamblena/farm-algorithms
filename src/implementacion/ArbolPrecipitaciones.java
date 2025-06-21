@@ -64,22 +64,23 @@ public class ArbolPrecipitaciones implements ABBPrecipitacionesTDA {
 
 	@Override
 	public void agregarMedicion(String valor, String anio, String mes, int dia, int precipitacion) {
-		// 1) Validación de fecha
+		// valido fecha
 		if (!diaValido(Integer.parseInt(anio), Integer.parseInt(mes), dia)) return;
 
-		// 2) Si el árbol está vacío o no existe el campo, lo creamos
+		//  si arbol esta vacío o no existe el campo, lo creo
 		if (raiz == null) {
 			agregar(valor);
 		}
 
-		// 3) Buscamos la posición correcta en el ABB
+
+		// busco la posición correcta en el ABB
 		if (valor.equalsIgnoreCase(raiz.campo)) {
-			// mismo nodo: agregamos o reemplazamos la medición
+			// si mismo nodo, agregamos o reemplazamos la medicion
 			String periodo = anio + mes;
 			raiz.mensualPrecipitaciones.agregar(periodo, dia, precipitacion);
 		}
 		else if (esMenor(valor, raiz.campo)) {
-			// si no existe hijo izquierdo, lo creamos primero
+			// si no existe hijo izquierdo, lo creo primero
 			if (raiz.hijoIzquierdo == null) {
 				raiz.hijoIzquierdo = new ArbolPrecipitaciones();
 				raiz.hijoIzquierdo.inicializar();
@@ -96,8 +97,6 @@ public class ArbolPrecipitaciones implements ABBPrecipitacionesTDA {
 			raiz.hijoDerecho.agregarMedicion(valor, anio, mes, dia, precipitacion);
 		}
 	}
-
-
 
 	@Override
 	public void eliminar(String valor) {

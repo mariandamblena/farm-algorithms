@@ -87,6 +87,8 @@ public class Conjunto implements ConjuntoTDA {
 	@Override
 	public boolean estaVacio() {
 		return cantidad == 0;
+
+
 	}
 
 }
